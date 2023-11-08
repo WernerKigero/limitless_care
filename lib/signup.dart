@@ -17,8 +17,7 @@ class SignUp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Welcome to Limitless Care'),
-        backgroundColor: AppColors
-            .primaryColor, // Use the primary color as the app bar background
+        backgroundColor: AppColors.primaryColor,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -27,46 +26,54 @@ class SignUp extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.all(16.0), // Padding for the whole content
+        padding: EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: 16.0), // Space above the header
-
+              SizedBox(height: 16.0),
               Text(
                 'The first step in improving your day to day life starts here.',
                 style: TextStyle(
-                  fontSize: 14, // Text size 14px
+                  fontSize: 14,
                 ),
               ),
-              SizedBox(height: 16.0), // Space below the header
-
-              _buildTextField(context, "Email", Icons.email),
-              _buildTextField(context, "Username", Icons.person),
-              _buildTextField(context, "Password", Icons.lock),
-              _buildTextField(context, "Confirm Password", Icons.lock),
-              _buildTextField(context, "Age", Icons.calendar_today),
-              _buildGenderDropdown(context),
-
-              SizedBox(height: 16.0), // Space between fields and button
-
+              SizedBox(height: 16.0),
+              _buildTextField("Email", Icons.email),
+              _buildTextField("Username", Icons.person),
+              _buildTextField("Password", Icons.lock),
+              _buildTextField("Confirm Password", Icons.lock),
+              _buildTextField("Age", Icons.calendar_today),
+              _buildGenderDropdown(),
+              SizedBox(height: 16.0),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      AppTheme.llcTheme.primaryColor),
+                  backgroundColor: MaterialStateProperty.all(AppTheme.llcTheme.primaryColor),
                   padding: MaterialStateProperty.all(
                       EdgeInsets.symmetric(horizontal: 20, vertical: 12)),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24.0),
                   )),
                   textStyle: MaterialStateProperty.all(TextStyle(
-                    fontSize: 14, // Button text size 14px
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white, // Button text color
+                    color: Colors.white,
                   )),
                 ),
                 onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Row(
+                        children: [
+                          Icon(Icons.check, color: Colors.green),
+                          SizedBox(width: 8.0),
+                          Text('Sign Up successful', style: TextStyle(color: Colors.green)),
+                        ],
+                      ),
+                      backgroundColor: Colors.white,
+                      duration: Duration(seconds: 3),
+                    ),
+                  );
                   // Add your signup logic here
                 },
                 child: Text('Sign Up'),
@@ -78,19 +85,18 @@ class SignUp extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(BuildContext context, String label, IconData icon) {
+  Widget _buildTextField(String label, IconData icon) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0), // Margin between text fields
+      margin: EdgeInsets.only(bottom: 16.0),
       child: TextField(
         decoration: InputDecoration(
           labelText: label,
           prefixIcon: Icon(
             icon,
-            color: AppTheme.llcTheme.primaryColor, // Icon color
+            color: AppTheme.llcTheme.primaryColor,
           ),
           filled: true,
           fillColor: Colors.transparent,
-          // Set this to transparent
           hintStyle: AppTheme.llcTheme.inputDecorationTheme.hintStyle,
           enabledBorder: AppTheme.llcTheme.inputDecorationTheme.enabledBorder,
           focusedBorder: AppTheme.llcTheme.inputDecorationTheme.focusedBorder,
@@ -100,32 +106,29 @@ class SignUp extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppTheme.llcTheme.primaryColor, // Deep blue
-            AppColors.secondaryColor, // Use AppColors.secondaryColor here
+            AppTheme.llcTheme.primaryColor,
+            AppColors.secondaryColor,
           ],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
-        borderRadius: BorderRadius.circular(
-            24.0), // Apply the border radius here
+        borderRadius: BorderRadius.circular(24.0),
       ),
     );
   }
 
-
-  Widget _buildGenderDropdown(BuildContext context) {
+  Widget _buildGenderDropdown() {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0), // Margin for the gender dropdown
+      margin: EdgeInsets.only(bottom: 16.0),
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration(
           labelText: 'Gender',
           prefixIcon: Icon(
             Icons.person_outline,
-            color: AppTheme.llcTheme.primaryColor, // Icon color
+            color: AppTheme.llcTheme.primaryColor,
           ),
           filled: true,
           fillColor: Colors.transparent,
-          // Set this to transparent
           hintStyle: AppTheme.llcTheme.inputDecorationTheme.hintStyle,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(24.0),
@@ -150,14 +153,13 @@ class SignUp extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppTheme.llcTheme.primaryColor, // Deep blue
-            AppColors.secondaryColor, // Use AppColors.secondaryColor here
+            AppTheme.llcTheme.primaryColor,
+            AppColors.secondaryColor,
           ],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
-        borderRadius: BorderRadius.circular(
-            24.0), // Apply the border radius here
+        borderRadius: BorderRadius.circular(24.0),
       ),
     );
   }
