@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:limitless_care/main.dart';
 import 'llcTheme.dart'; // Import the custom theme
 
 class Signup extends StatelessWidget {
@@ -17,7 +18,7 @@ class SignUp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Welcome to Limitless Care'),
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: AppTheme.llcTheme.primaryColor,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -70,13 +71,26 @@ class SignUp extends StatelessWidget {
                           Text('Sign Up successful', style: TextStyle(color: Colors.green)),
                         ],
                       ),
-                      backgroundColor: Colors.white,
+                      backgroundColor: Colors.black,
                       duration: Duration(seconds: 3),
                     ),
                   );
                   // Add your signup logic here
                 },
                 child: Text('Sign Up'),
+              ),
+              SizedBox(height: 8.0),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                  // Navigate to login page or perform some action
+                },
+                child: Text(
+                  'Already have an account? Login',
+                  style: TextStyle(color: AppTheme.llcTheme.primaryColor, fontFamily: 'Arial', fontSize: 12),
+                ),
               ),
             ],
           ),
@@ -107,7 +121,7 @@ class SignUp extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             AppTheme.llcTheme.primaryColor,
-            AppColors.secondaryColor,
+            AppTheme.llcTheme.secondaryHeaderColor,
           ],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
@@ -154,7 +168,7 @@ class SignUp extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             AppTheme.llcTheme.primaryColor,
-            AppColors.secondaryColor,
+
           ],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,

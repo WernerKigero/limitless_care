@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './signup.dart';
 import './UserDashboardPage.dart';
-
+import './main.dart';
 class AppColors {
   static const Color primaryColor = Color(0xFF3B5998); // Deep Blue
   static const Color secondaryColor = Color(0xFFCCCCCC); // Light Grey
