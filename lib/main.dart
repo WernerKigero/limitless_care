@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import './signup.dart';
 import './UserDashboardPage.dart';
-import './main.dart';
+
 class AppColors {
-  static const Color primaryColor = Color(0xFF3B5998); // Deep Blue
+  static const Color primaryColor = Color(0xFF01796F); // Deep Blue
   static const Color secondaryColor = Color(0xFFCCCCCC); // Light Grey
   static const Color accentColor = Color(0xFF66A3D2); // Light Blue
   static const Color altsecond = Color(0xFFD700); // Dark Gold
@@ -49,6 +49,11 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Image(
+              image: AssetImage('assets/llcLogo.png'), // Adjust the path based on your asset structure
+              height: 350, // Adjust the height as needed
+            ),
+            SizedBox(height: 20.0),
             Text(
               'Welcome to Limitless Care',
               style: TextStyle(
@@ -113,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [AppColors.primaryColor,AppColors.secondaryColor],
+          colors: [AppColors.primaryColor, AppColors.secondaryColor],
         ),
         borderRadius: BorderRadius.circular(24.0),
       ),
@@ -180,8 +185,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(AppColors.primaryColor),
-          shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.0)),
-          ),
+          shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.0))),
         ),
       ),
     );

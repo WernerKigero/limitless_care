@@ -31,7 +31,7 @@ class AppTheme {
 }
 
 class AppColors {
-  static const Color primaryColor = Color(0xFF3B5998); // Deep Blue
+  static const Color primaryColor = Color(0xFF01796F); // Deep Blue
   static const Color secondaryColor = Color(0xFFCCCCCC); // Light Grey
   static const LinearGradient primaryColorGradient = LinearGradient(
     colors: [Color(0xFF3B5998), Color(0xFFCCCCCC)],
