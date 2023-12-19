@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:limitless_care/main.dart';
+import './main.dart';
 import 'llcTheme.dart'; // Import the custom theme
 
 class Signup extends StatelessWidget {
@@ -49,7 +49,8 @@ class SignUp extends StatelessWidget {
               SizedBox(height: 16.0),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(AppTheme.llcTheme.primaryColor),
+                  backgroundColor: MaterialStateProperty.all(
+                      AppTheme.llcTheme.primaryColor),
                   padding: MaterialStateProperty.all(
                       EdgeInsets.symmetric(horizontal: 20, vertical: 12)),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
@@ -68,7 +69,8 @@ class SignUp extends StatelessWidget {
                         children: [
                           Icon(Icons.check, color: Colors.green),
                           SizedBox(width: 8.0),
-                          Text('Sign Up successful', style: TextStyle(color: Colors.green)),
+                          Text('Sign Up successful',
+                              style: TextStyle(color: Colors.green)),
                         ],
                       ),
                       backgroundColor: Colors.black,
@@ -89,7 +91,9 @@ class SignUp extends StatelessWidget {
                 },
                 child: Text(
                   'Already have an account? Login',
-                  style: TextStyle(color: AppTheme.llcTheme.primaryColor, fontFamily: 'Arial', fontSize: 12),
+                  style: TextStyle(color: AppTheme.llcTheme.primaryColor,
+                      fontFamily: 'Arial',
+                      fontSize: 12),
                 ),
               ),
             ],
@@ -107,7 +111,7 @@ class SignUp extends StatelessWidget {
           labelText: label,
           prefixIcon: Icon(
             icon,
-            color: AppTheme.llcTheme.primaryColor,
+            color: Colors.black, // Change the icon color to black
           ),
           filled: true,
           fillColor: Colors.transparent,
@@ -134,12 +138,23 @@ class SignUp extends StatelessWidget {
   Widget _buildGenderDropdown() {
     return Container(
       margin: EdgeInsets.only(bottom: 16.0),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            AppTheme.llcTheme.primaryColor,
+            AppTheme.llcTheme.secondaryHeaderColor,
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+        borderRadius: BorderRadius.circular(24.0),
+      ),
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration(
           labelText: 'Gender',
           prefixIcon: Icon(
             Icons.person_outline,
-            color: AppTheme.llcTheme.primaryColor,
+            color: Colors.black, // Change the icon color to black
           ),
           filled: true,
           fillColor: Colors.transparent,
@@ -152,29 +167,21 @@ class SignUp extends StatelessWidget {
             borderRadius: BorderRadius.circular(24.0),
             borderSide: BorderSide.none,
           ),
-          labelStyle: AppTheme.llcTheme.inputDecorationTheme.labelStyle,
+          labelStyle: AppTheme.llcTheme.inputDecorationTheme.labelStyle
+              ?.copyWith(color: Colors.black),
         ),
         items: ['Male', 'Female', 'Prefer not to say'].map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(value),
+            child: Text(
+              value,
+              style: TextStyle(color: Colors.black), // Set text color to black
+            ),
           );
         }).toList(),
         onChanged: (String? newValue) {
           // Handle dropdown value change
         },
       ),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            AppTheme.llcTheme.primaryColor,
-
-          ],
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-        ),
-        borderRadius: BorderRadius.circular(24.0),
-      ),
     );
-  }
-}
+  }}
