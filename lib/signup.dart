@@ -12,7 +12,14 @@ class Signup extends StatelessWidget {
   }
 }
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
+  @override
+  _SignUpState createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  int _currentPageIndex = 0; // Default to "User" tab
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,84 +27,129 @@ class SignUp extends StatelessWidget {
         title: Text('Welcome to Limitless Care'),
         backgroundColor: AppTheme.llcTheme.primaryColor,
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/background_image.png'),
-            fit: BoxFit.cover,
+      body: _buildPage(_currentPageIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentPageIndex,
+        onTap: (index) {
+          setState(() {
+            _currentPageIndex = index;
+          });
+        },
+        unselectedItemColor: Colors.black, // Set unselected icon color to black
+        selectedItemColor: Colors.green, // Set selected icon color to green
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'User',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business), // Change the icon for the service provider
+            label: 'Service Provider',
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPage(int index) {
+    if (index == 0) {
+      return _buildUserPage();
+    } else {
+      return _buildServiceProviderPage();
+    }
+  }
+
+  Widget _buildUserPage() {
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/background_image.png'),
+          fit: BoxFit.cover,
         ),
-        padding: EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(height: 16.0),
-              Text(
-                'The first step in improving your day to day life starts here.',
-                style: TextStyle(
+      ),
+      padding: EdgeInsets.all(16.0),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(height: 16.0),
+            Text(
+              'The first step in improving your day to day life starts here.',
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
+            SizedBox(height: 16.0),
+            _buildTextField("Email", Icons.email),
+            _buildTextField("Username", Icons.person),
+            _buildTextField("Password", Icons.lock),
+            _buildTextField("Confirm Password", Icons.lock),
+            _buildTextField("Age", Icons.calendar_today),
+            _buildGenderDropdown(),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                    AppTheme.llcTheme.primaryColor),
+                padding: MaterialStateProperty.all(
+                    EdgeInsets.symmetric(horizontal: 20, vertical: 12)),
+                shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24.0),
+                )),
+                textStyle: MaterialStateProperty.all(TextStyle(
                   fontSize: 14,
-                ),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                )),
               ),
-              SizedBox(height: 16.0),
-              _buildTextField("Email", Icons.email),
-              _buildTextField("Username", Icons.person),
-              _buildTextField("Password", Icons.lock),
-              _buildTextField("Confirm Password", Icons.lock),
-              _buildTextField("Age", Icons.calendar_today),
-              _buildGenderDropdown(),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      AppTheme.llcTheme.primaryColor),
-                  padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 12)),
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
-                  )),
-                  textStyle: MaterialStateProperty.all(TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )),
-                ),
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Row(
-                        children: [
-                          Icon(Icons.check, color: Colors.green),
-                          SizedBox(width: 8.0),
-                          Text('Sign Up successful',
-                              style: TextStyle(color: Colors.green)),
-                        ],
-                      ),
-                      backgroundColor: Colors.black,
-                      duration: Duration(seconds: 3),
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Row(
+                      children: [
+                        Icon(Icons.check, color: Colors.green),
+                        SizedBox(width: 8.0),
+                        Text('Sign Up successful',
+                            style: TextStyle(color: Colors.green)),
+                      ],
                     ),
-                  );
-                  // Add your signup logic here
-                },
-                child: Text('Sign Up'),
+                    backgroundColor: Colors.black,
+                    duration: Duration(seconds: 3),
+                  ),
+                );
+                // Add your signup logic here
+              },
+              child: Text('Sign Up'),
+            ),
+            SizedBox(height: 8.0),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+                // Navigate to login page or perform some action
+              },
+              child: Text(
+                'Already have an account? Login',
+                style: TextStyle(
+                    color: AppTheme.llcTheme.primaryColor,
+                    fontFamily: 'Arial',
+                    fontSize: 12),
               ),
-              SizedBox(height: 8.0),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
-                  // Navigate to login page or perform some action
-                },
-                child: Text(
-                  'Already have an account? Login',
-                  style: TextStyle(color: AppTheme.llcTheme.primaryColor,
-                      fontFamily: 'Arial',
-                      fontSize: 12),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildServiceProviderPage() {
+    return Container(
+      // Add your service provider input fields here
+      child: Center(
+        child: Text(
+          'Service Provider Page - Add Your Fields Here',
+          style: TextStyle(fontSize: 18.0),
         ),
       ),
     );
@@ -184,4 +236,5 @@ class SignUp extends StatelessWidget {
         },
       ),
     );
-  }}
+  }
+}

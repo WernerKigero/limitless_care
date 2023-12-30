@@ -36,7 +36,7 @@ class _ExpandableCardState extends State<ExpandableCard> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color(0xFF3B5998), // Deep blue
+                  Color(0xFF01796F), // Deep blue
                   Color(0xFFCCCCCC), // Light Grey
                 ],
                 begin: Alignment.centerLeft,
@@ -61,18 +61,33 @@ class _ExpandableCardState extends State<ExpandableCard> {
         if (isExpanded)
           Card(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(24.0),
-                bottomRight: Radius.circular(24.0),
+              borderRadius: BorderRadius.circular(24.0), // Adjust the border radius
+              side: BorderSide(
+                color: Colors.grey.withOpacity(0.5), // Adjust the border color and opacity
+                width: 2.0, // Adjust the border width
               ),
             ),
+            margin: EdgeInsets.all(0), // Remove default Card margin
             child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Description: This is a sample description text that can be expanded and collapsed.',
-                    style: TextStyle(fontSize: 14.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Status: Pending', // Change the status accordingly
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 8.0),
+                      Text(
+                        'Description: This is a sample description text that can be expanded and collapsed.',
+                        style: TextStyle(fontSize: 14.0),
+                      ),
+                    ],
                   ),
                 ),
                 ButtonBar(
@@ -113,7 +128,7 @@ class _ExpandableCardState extends State<ExpandableCard> {
                         // Delete request action
                       },
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Color(0xFFE91E63)), // Pink
+                        backgroundColor: MaterialStateProperty.all(Color(0xFFE53935)), // Red
                       ),
                       icon: Icon(Icons.delete, color: Colors.white),
                       label: Text(
