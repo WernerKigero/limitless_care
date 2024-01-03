@@ -147,13 +147,25 @@ class _SignUpState extends State<SignUp> {
     return Container(
       // Add your service provider input fields here
       child: Center(
-        child: Text(
-          'Service Provider Page - Add Your Fields Here',
-          style: TextStyle(fontSize: 18.0),
+        child: Column( // Use a Column to arrange widgets vertically
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Thank you for choosing to render your service available on Limitless care, and for taking part in making day to day life more bareable. Please fill in the folowing details to sign up as a service provider',
+              style: TextStyle(fontSize: 18.0),
+            ),
+            SizedBox(height: 16.0), // SizedBox wrapped around the Text widget
+            _buildTextField("Email", Icons.email),
+            _buildTextField("Username", Icons.person),
+            _buildTextField("Password", Icons.lock),
+            _buildTextField("Confirm Password", Icons.lock),
+            _buildTextField("Number of caregivers available", Icons.numbers_sharp),
+          ],
         ),
       ),
     );
   }
+
 
   Widget _buildTextField(String label, IconData icon) {
     return Container(
