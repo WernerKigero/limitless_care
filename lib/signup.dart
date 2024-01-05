@@ -82,11 +82,15 @@ class _SignUpState extends State<SignUp> {
             ),
             SizedBox(height: 16.0),
             _buildTextField("Email", Icons.email),
+            _buildTextField("First name", FontAwesomeIcons.user),
+            _buildTextField("Last name", FontAwesomeIcons.user),
+            _buildTextField("ID Number", FontAwesomeIcons.idBadge),
+            _buildTextField("Age", Icons.calendar_today),
+            _buildGenderDropdown(),
             _buildTextField("Username", Icons.person),
             _buildTextField("Password", Icons.lock),
             _buildTextField("Confirm Password", Icons.lock),
-            _buildTextField("Age", Icons.calendar_today),
-            _buildGenderDropdown(),
+
             SizedBox(height: 16.0),
             ElevatedButton(
               style: ButtonStyle(
